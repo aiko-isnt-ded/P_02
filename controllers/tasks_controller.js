@@ -68,6 +68,15 @@ function deleteTask(id) {
     return data.tasks.splice(index, 1);
 }
 
+function findTasksByTag(tags) {
+    if (!Array.isArray(tags)) {
+        throw new TaskException("Tags MUST be an array.");
+    }
+
+    return data.tasks.filter(task =>
+        tags.every(tagID => task.tags.includes(tagID))
+    );
+}
 
 // =======================
 // Fill Data
