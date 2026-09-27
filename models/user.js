@@ -1,5 +1,5 @@
 function getNextUserID() {
-    
+    return data.users.length + 1;
 }
 
 class UserException {
@@ -94,6 +94,3 @@ class User {
     }
 
 }
-
-// Easy validation with node.js
-module.exports = User;
