@@ -1,5 +1,7 @@
+let nextTaskID = 1;
+
 function getNextTaskID() {
-    
+    return nextTaskID++;
 }
 
 class TaskException {
@@ -9,25 +11,119 @@ class TaskException {
 }
 
 class Task {
+    
+    // ====================
     // Attributes
+    // ====================
     #id;
     #title;
+    #description;
     #due_date;
     #owner;
     #status;
     #tags;
 
+    // ====================
     // Constructor
-    constructor(name, color) {
+    // ====================
+    constructor(title, due_date, description, owner, status, tags = []) {
         this.#id = getNextTaskID();
-        this.name = name;
-        this.color = color;
+        this.title = title;
+        this.due_date = due_date;
+        this.description = description;
+        this.owner = owner;
+        this.status = status;
+        this.tags = tags;
     }
 
     // Setters
     set id(value) {
-        throw new TagException("IDs are auto-generated.")
+        throw new TaskException("IDs are auto-generated.")
     }
 
+    set title(title) {
+        if (!title || title.trim() === "") {
+            throw new TaskException("Title CANNOT be empty.")
+        }
+
+        this.#title = title;
+    }
+
+    set due_date(due_date) {
+        if (isNaN(new Date(due_date).getTime())) {
+            throw new TaskException("Due Date is NOT valid (must be yyyy/mm/dd).")
+        }
+
+        this.#due_date = due_date;
+    }
+
+    set description(description) {
+        this.#description = description;    
+    }
+
+    set owner(owner) {
+        // Check if user exists
+        if (!data.users.some(user => user.id == owner)) {
+            throw new TaskException(`User with ID ${owner} does NOT exist.`);
+        }
+
+        this.#owner = owner;
+    }
+
+    set status(status) {
+        // Ensure valid values are entered
+        if (!["A", "F", "C"].includes(status)) {
+            throw new TaskException("Status MUST be either A/F/C");
+        }
+
+        this.#status = status;
+    }
+
+    set tags(tags) {
+        // Check that tag is an array
+        if (!Array.isArray(tags)) {
+            throw new TaskException("Tags MUST be an array.");
+        }
+
+        // // Check that tag exists
+        // for (let id = 0; id < tags.length; id++) {
+        //     if (!data.tags.some(tag => tag.id == tags[id])) {
+        //         throw new TaskException("One or more tags do NOT exist.");
+        //     }
+        // }
+
+        this.#tags = tags;
+    }
+
+    // ====================
     // Getters
+    // ====================
+
+    get id() {
+        return this.#id;
+    }
+
+    get title() {
+        return this.#title;
+    }
+
+    get description() {
+        return this.#description;
+    }
+
+    get due_date() {
+        return this.#due_date;
+    }
+
+    get owner() {
+        return this.#owner;
+    }
+
+    get status() {
+        return this.#status;
+    }
+
+    get tags() {
+        return this.#tags;
+    }
 }

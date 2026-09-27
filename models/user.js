@@ -1,5 +1,7 @@
+let nextUserID = 1;
+
 function getNextUserID() {
-    return data.users.length + 1;
+    return nextUserID++;
 }
 
 class UserException {
@@ -49,6 +51,11 @@ class User {
     set email(email) {
         if (!email || email.trim() === "") {
             throw new UserException("Email CANNOT be empty.")
+        }
+
+        // Check if email is unique
+        if (data.users.some(user => user.email == email && user.id != this.#id)) {
+            throw new UserException("Email is already in use.")
         }
 
         this.#email = email;

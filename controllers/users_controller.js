@@ -23,7 +23,8 @@ function searchUsers(attribute, value) {
             return user.joined_at.toLocaleDateString("en-GB").includes(value);
         }
 
-        String(user[attribute]).includes(String(value))
+        // Return filtered value
+        return String(user[attribute]).includes(String(value))
     });
 }
 
@@ -41,7 +42,7 @@ function updateUser(id, obj_new_info) {
         throw new UserException(`User with ID ${id} does NOT exist.`);
     }
 
-    // Iterate through attributes until we find the correct ont
+    // Iterate through attributes until we find the correct one
     for (let attr in obj_new_info) {
         // Check if attribute exists and is not id nor joined_at
         if (User.prototype.hasOwnProperty(attr) && attr != "id" && attr != "joined_at") {
