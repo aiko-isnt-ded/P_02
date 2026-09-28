@@ -27,13 +27,13 @@ class Task {
     // Constructor
     // ====================
     constructor(title, due_date, description, owner, status, tags = []) {
-        this.#id = getNextTaskID();
         this.title = title;
         this.due_date = due_date;
         this.description = description;
         this.owner = owner;
         this.status = status;
         this.tags = tags;
+        this.#id = getNextTaskID();
     }
 
     // Setters

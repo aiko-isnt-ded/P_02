@@ -25,11 +25,11 @@ class User {
     // Constructor
     // ====================
     constructor(name, email, password) {
-        this.#id = getNextUserID();                 // Auto-generated & unmodifiable
         this.name = name;
         this.email = email;                        
         this.password = password;
         this.#joined_at = new Date();               // Auto-generated & unmodifiable
+        this.#id = getNextUserID();                 // Auto-generated & unmodifiable
     }
 
     // ====================
