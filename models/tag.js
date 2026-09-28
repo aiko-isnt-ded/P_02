@@ -51,7 +51,7 @@ class Tag {
         }
 
         // Check if RGB is correct using regex
-        let hex = /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/;
+        let hex = /^#[0-9a-fA-F]{6}$/;
         if (!hex.test(color)) {
             throw new TagException("Color must be hexadecimal.")
         }
