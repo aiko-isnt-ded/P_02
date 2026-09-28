@@ -86,13 +86,13 @@ class Task {
         }
 
         // Check that tag exists
-        for (let id = 1; id < tags.length; id++) {
+        for (let i = 0; i < tags.length; i++) {
             // Match a tag with the id
-            let tagExists = data.tags.some(tag => tag.id == id);
+            let tagExists = data.tags.some(tag => tag.id == tags[i]);
 
             // Case: Tag doesn't exist
             if (!tagExists) {
-                throw new TaskException(`Tag with ID ${tags[id]} does NOT exist.`);
+                throw new TaskException(`Tag with ID ${tags[i]} does NOT exist.`);
             }
         }
 
