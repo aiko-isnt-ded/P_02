@@ -77,18 +77,3 @@ function findTasksByTag(tags) {
         tags.every(tagID => task.tags.includes(tagID))
     );
 }
-
-// =======================
-// Fill Data
-// =======================
-
-// Para José [1]
-createTask("Hola1", "2026-09-18", "", "1", "F", [1, 2]);
-createTask("Hola2", "2026-09-25", "holaaa", "1", "A", [2]);
-
-// Para María [2]
-createTask("Adiós1", "2026-09-18", "adios", "2", "F", [3, 2]);
-createTask("Adiós2", "2026-09-25", "", "2", "A", [2]);
-
-// Para Morelos [3]
-createTask("bye", "2026-09-30", "bye", "3", "C", [3]);

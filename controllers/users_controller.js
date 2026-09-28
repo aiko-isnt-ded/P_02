@@ -67,12 +67,3 @@ function deleteUser(id) {
     }
     return data.users.splice(index, 1);
 }
-
-// =======================
-// Fill Data
-// =======================
-
-createUser("José", "jose@gmail.com", "123456789");
-createUser("María", "maria@gmail.com", "987654321");
-createUser("Morelos", "morelos@gmail.com", "987654321");
-createUser("Pavón", "pavon@gmail.com", "987654321");

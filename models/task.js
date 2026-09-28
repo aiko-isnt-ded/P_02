@@ -85,12 +85,16 @@ class Task {
             throw new TaskException("Tags MUST be an array.");
         }
 
-        // // Check that tag exists
-        // for (let id = 0; id < tags.length; id++) {
-        //     if (!data.tags.some(tag => tag.id == tags[id])) {
-        //         throw new TaskException("One or more tags do NOT exist.");
-        //     }
-        // }
+        // Check that tag exists
+        for (let id = 1; id < tags.length; id++) {
+            // Match a tag with the id
+            let tagExists = data.tags.some(tag => tag.id == id);
+
+            // Case: Tag doesn't exist
+            if (!tagExists) {
+                throw new TaskException(`Tag with ID ${tags[id]} does NOT exist.`);
+            }
+        }
 
         this.#tags = tags;
     }
