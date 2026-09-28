@@ -65,5 +65,16 @@ function deleteUser(id) {
     if (index == -1) {
         throw new UserException(`User with ID ${id} does NOT exist.`);
     }
-    return data.users.splice(index, 1);
+
+    // Check if user has any task
+    for (let i = 0; i < data.tasks.length; i++) {
+        if (data.tasks[i].owner == id) {
+            throw new UserException(`User with ID ${id} CANNOT be deleted because they have the task with ID ${data.tasks[i].id} assigned`)
+        }
+    }
+
+    // Delete record
+    data.users.splice(index, 1)
+
+    return `User with ID ${id} was deleted successfully.`;
 }

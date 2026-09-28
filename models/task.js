@@ -80,19 +80,24 @@ class Task {
     }
 
     set tags(tags) {
+        // Convert empty values to an array
+        if (tags == "" || tags == null) {
+            tags = [];
+        }
+
         // Check that tag is an array
         if (!Array.isArray(tags)) {
             throw new TaskException("Tags MUST be an array.");
         }
 
         // Check that tag exists
-        for (let id = 1; id < tags.length; id++) {
+        for (let i = 0; i < tags.length; i++) {
             // Match a tag with the id
-            let tagExists = data.tags.some(tag => tag.id == id);
+            let tagExists = data.tags.some(tag => tag.id == tags[i]);
 
             // Case: Tag doesn't exist
             if (!tagExists) {
-                throw new TaskException(`Tag with ID ${tags[id]} does NOT exist.`);
+                throw new TaskException(`Tag with ID ${tags[i]} does NOT exist.`);
             }
         }
 

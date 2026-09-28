@@ -65,7 +65,11 @@ function deleteTask(id) {
     if (index == -1) {
         throw new TaskException(`Task with ID ${id} does NOT exist.`);
     }
-    return data.tasks.splice(index, 1);
+    
+    // Delete record
+    data.tasks.splice(index, 1)
+
+    return `Tag with ID ${id} was deleted successfully.`;
 }
 
 function findTasksByTag(tags) {

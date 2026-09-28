@@ -63,11 +63,10 @@ function deleteTag(id) {
     // Check all tasks on data
     for (let i = 0; i < data.tasks.length; i++) {
         // Check every tag in a task
-        for (let j = 0; i < data.tasks[i].tags[j] == id; j++) {
+        for (let j = 0; j < data.tasks[i].tags.length; j++) {
             // Check if tag is assigned
             if (data.tasks[i].tags[j] == id) {
-                throw new TagException(`Tag with ID ${id} CANNOT be deleted
-                    because it is assigned to Task with ID ${data.tasks[i].id}.`);
+                throw new TagException(`Tag with ID ${id} CANNOT be deleted because it is assigned to Task with ID ${data.tasks[i].id}.`);
             }
         }
     }
